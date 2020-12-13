@@ -20,13 +20,13 @@ pip3 install requests semantic_version lxml
 
 # Usage
 
-Start by reading help: `./qt-downloader --help`
+Start by reading the help: `./qt-downloader --help`
 
-Basic usage pattern is `./qt-downloader [os] [target] [version] [toolchain]`
+A basic usage pattern is `./qt-downloader [os] [target] [version] [toolchain]`
 
 Arguments are designed to be provided from left to right, so that one can discover
 reasonable values step by step. Feeling doubtful about what to type? Don't bother typing.
-Fire a command as is, and allowed values for first yet to be specified argument are to be
+Fire a command as is, and allowed values for the first yet to be specified argument are to be
 handed to you after a while.
 
 Here's an example:
@@ -46,6 +46,25 @@ discovered in one go. This way, discovering of all the arguments at the very beg
 possible too: `./qt-downloader --all`. *Bear in mind, though, that this operation lasts for
 about half a minute and provides lengthy output.*
 
-Qt kit lands into folder with name equal to requested version. This folder is created in
-the current working directory.
+Qt kit lands into a folder with a name equal to the requested version. The kit is made
+relocatable by generating the `qt.conf` file with the appropriate contents. If the `qt.conf`
+file exists, then it is not touched.
+
+Need an Open Source version of Qt? Pass option `--opensource` and the Open Source license will
+be accepted.
+
+All modules of Qt are downloaded by default. Installation of a required subset of modules is
+supported as well. See option `--module`.
+
+## Additional tools shipped with Qt
+
+Qt ships a few tools as complementary packages. The current list of supported tools is as follows:
+- OpenSSL, see option `--openssl`
+- MinGW, see option `--mingw`
+
+The appropriate version of a tool is inferred automatically when possible.
+
+Additional tools land into the `Tools` folder by the side of the Qt itself.
+
+ 
 
