@@ -7,18 +7,20 @@ CLI to download Qt on headless systems
 
 ```bash
 sudo apt update
-sudo apt install python3-pip p7zip-full
-sudo pip3 install requests semantic_version lxml
+sudo apt install python3-pip
+sudo pip3 install pipenv
 ```
 
 ## macOS
 
 ```
-brew install python3 p7zip
-pip3 install requests semantic_version lxml
+brew install python3
+pip3 install pipenv
 ```
 
 # Usage
+
+**Note**. Either enter `pipenv shell` and run commands as is or prepend them with `pipenv run` every time.
 
 Start by reading the help: `./qt-downloader --help`
 
@@ -53,18 +55,26 @@ file exists, then it is not touched.
 Need an Open Source version of Qt? Pass option `--opensource` and the Open Source license will
 be accepted.
 
-All modules of Qt are downloaded by default. Installation of a required subset of modules is
-supported as well. See option `--module`.
+All essential modules of Qt are downloaded by default. Installation of a required subset of
+essential modules is supported as well. See option `--module`.
+
+Add-on modules are not downloaded by default. One has to list desired add-ons explicitly by
+means of the option `--addon`. On Windows, adding `debug_info` to the list of addons installs
+the debug files for the essential modules as well as the selected addons.
+
+Mirrors of official servers are supported by the option `--server`.
+
+**Warning**. All inter-modules dependencies have to be resolved manually.
 
 ## Additional tools shipped with Qt
 
 Qt ships a few tools as complementary packages. The current list of supported tools is as follows:
 - OpenSSL, see option `--openssl`
 - MinGW, see option `--mingw`
+- QtCreator, see option `--creator`
 
 The appropriate version of a tool is inferred automatically when possible.
 
-Additional tools land into the `Tools` folder by the side of the Qt itself.
-
- 
+Additional tools land into the `Tools` folder by the side of the Qt itself. The only exception
+to this rule is the QtCreator for macOS: it is installed to the root of the output directory.
 
